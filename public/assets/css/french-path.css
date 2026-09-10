@@ -1,0 +1,491 @@
+/**
+ * French Path front end.
+ *
+ * Colours come from custom properties so a theme can restyle the output by
+ * redefining them, without overriding rules.
+ */
+
+/* Set here rather than inherited: the card is dropped into whatever page
+   builder and theme the site runs, and a full width button in a padded card
+   overflows it the moment border-box is not in force. */
+.french-path,
+.french-path *,
+.french-path *::before,
+.french-path *::after {
+	box-sizing: border-box;
+}
+
+.french-path {
+	--french-path-ink: #14223a;
+	--french-path-muted: #5c6b82;
+	--french-path-line: #dfe4ec;
+	--french-path-surface: #f6f8fb;
+	--french-path-open: #0b6b3a;
+	--french-path-radius: 8px;
+
+	color: var(--french-path-ink);
+}
+
+.french-path-note {
+	margin: 0;
+	color: var(--french-path-muted);
+}
+
+.french-path-pathway-title {
+	margin: 0 0 16px;
+}
+
+.french-path-group + .french-path-group {
+	margin-top: 28px;
+}
+
+.french-path-group-title {
+	margin: 0 0 10px;
+	font-size: 1.05rem;
+}
+
+.french-path-steps {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: french-path-step;
+}
+
+.french-path-step {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 4px 12px;
+	margin: 0 0 8px;
+	padding: 12px 16px;
+	border: 1px solid var(--french-path-line);
+	border-radius: var(--french-path-radius);
+	background: var(--french-path-surface);
+	counter-increment: french-path-step;
+}
+
+.french-path-step::before {
+	content: counter(french-path-step);
+	min-width: 1.4em;
+	color: var(--french-path-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+.french-path-step-main {
+	display: flex;
+	flex: 1 1 auto;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 4px 12px;
+	justify-content: space-between;
+}
+
+.french-path-step-title {
+	font-weight: 600;
+}
+
+.french-path-step.is-locked .french-path-step-title {
+	color: var(--french-path-muted);
+}
+
+.french-path-step-status {
+	flex-shrink: 0;
+	font-size: .8125rem;
+	font-weight: 600;
+	letter-spacing: .02em;
+	text-transform: uppercase;
+}
+
+.french-path-step.is-open .french-path-step-status {
+	color: var(--french-path-open);
+}
+
+.french-path-step.is-locked .french-path-step-status {
+	color: var(--french-path-muted);
+}
+
+.french-path-step-reason {
+	flex: 1 0 100%;
+	color: var(--french-path-muted);
+	font-size: .875rem;
+}
+
+@media (max-width: 480px) {
+	.french-path-step {
+		padding: 10px 12px;
+	}
+
+	.french-path-step-main {
+		justify-content: flex-start;
+	}
+}
+
+/**
+ * The enrol card on a single course page.
+ *
+ * The palette is the school's own, declared here so the card looks the same
+ * wherever it is placed. Override the custom properties to restyle it.
+ */
+
+.french-path-enrol {
+	--french-path-card: #FFF8EF;
+	--french-path-card-ink: #14223A;
+	--french-path-card-line: #e7ddcd;
+	--french-path-red: #D52643;
+	--french-path-red-dark: #b81f38;
+	--french-path-blue: #2F67B8;
+	--french-path-blue-dark: #24528f;
+	--french-path-lock: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 15'%3E%3Cpath d='M2.5 6V4a4 4 0 0 1 8 0v2h.5a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h.5Zm2 0h4V4a2 2 0 1 0-4 0v2Z'/%3E%3C/svg%3E");
+
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	padding: 26px 24px;
+	border-radius: 4px;
+	background: var(--french-path-card);
+	color: var(--french-path-card-ink);
+}
+
+.french-path-label {
+	display: block;
+	margin-bottom: 2px;
+	color: var(--french-path-muted);
+	font-size: .6875rem;
+	font-weight: 600;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+
+.french-path-price {
+	font-size: 2.125rem;
+	font-weight: 800;
+	line-height: 1.05;
+	letter-spacing: -.02em;
+	font-variant-numeric: tabular-nums;
+}
+
+.french-path-price .woocommerce-Price-amount { font-size: inherit; }
+
+.french-path-promo { font-size: .9375rem; font-weight: 500; }
+.french-path-promo s { color: var(--french-path-muted); text-decoration-color: var(--french-path-red); }
+.french-path-promo b { margin-left: 6px; color: var(--french-path-red); font-weight: 700; }
+
+.french-path-rule { height: 1px; background: var(--french-path-card-line); }
+
+/**
+ * The pathway block.
+ *
+ * Every rule below is scoped under .french-path-enrol and states its own
+ * value rather than inheriting one. The card is dropped into a page builder
+ * whose theme styles ol, li and colour, and an inherited value there is a
+ * value someone else chose.
+ */
+
+.french-path-enrol .french-path-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 4px 14px;
+}
+
+.french-path-enrol .french-path-head .french-path-label { margin: 0; }
+
+.french-path-enrol .french-path-count {
+	color: var(--french-path-card-ink);
+	font-size: .75rem;
+	font-weight: 700;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.french-path-enrol .french-path-package-name {
+	margin: -12px 0 0;
+	color: var(--french-path-card-ink);
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 1.25;
+}
+
+/* The rung window: where they are, and either side of it. */
+
+.french-path-enrol ol.french-path-window {
+	margin: 0;
+	padding: 2px 0 0;
+	border: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+}
+
+.french-path-enrol ol.french-path-window > li.french-path-rung {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 0 14px;
+	align-items: baseline;
+	margin: 0;
+	padding: 9px 0 9px 26px;
+	list-style: none;
+	color: var(--french-path-muted);
+	font-size: .875rem;
+	line-height: 1.4;
+}
+
+.french-path-enrol ol.french-path-window > li.french-path-rung::marker { content: none; }
+
+/* The spine, drawn only between the rungs. */
+.french-path-rung::before {
+	content: "";
+	position: absolute;
+	left: 5px;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	background: var(--french-path-card-line);
+}
+
+.french-path-rung:first-child::before { top: 14px; }
+.french-path-rung:last-child::before { bottom: calc(100% - 14px); }
+.french-path-rung:only-child::before { display: none; }
+
+.french-path-rung-node {
+	position: absolute;
+	left: 0;
+	top: 8px;
+	width: 12px;
+	height: 12px;
+	border: 2px solid var(--french-path-card-line);
+	border-radius: 50%;
+	background: var(--french-path-card);
+	box-sizing: border-box;
+}
+
+.french-path-rung.is-open .french-path-rung-node {
+	border-color: var(--french-path-open);
+	background: var(--french-path-open);
+}
+
+.french-path-rung.is-current .french-path-rung-node {
+	border-color: var(--french-path-blue);
+	background: var(--french-path-card);
+	box-shadow: 0 0 0 3px rgba(47, 103, 184, .16);
+}
+
+.french-path-rung.is-current.is-open .french-path-rung-node { background: var(--french-path-blue); }
+
+.french-path-rung-t { min-width: 0; }
+
+.french-path-rung-s {
+	flex-shrink: 0;
+	font-size: .6875rem;
+	font-weight: 600;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.french-path-rung.is-open .french-path-rung-s { color: var(--french-path-open); }
+
+.french-path-rung.is-current {
+	color: var(--french-path-card-ink);
+	font-weight: 600;
+}
+
+.french-path-rung.is-current .french-path-rung-s { color: var(--french-path-blue); }
+
+/* The locked panel. It replaces a dead greyed button: what a learner needs
+   here is the reason and the next move, not something to press. */
+
+.french-path-gate {
+	padding: 14px 16px;
+	border-radius: 6px;
+	background: rgba(20, 34, 58, .045);
+	border-left: 3px solid var(--french-path-card-line);
+}
+
+.french-path-enrol .french-path-gate-title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0 0 4px;
+	color: var(--french-path-card-ink);
+	font-size: .9375rem;
+	font-weight: 700;
+}
+
+.french-path-gate-icon {
+	width: 13px;
+	height: 15px;
+	flex-shrink: 0;
+	background: var(--french-path-muted);
+	-webkit-mask: var(--french-path-lock) center / contain no-repeat;
+	mask: var(--french-path-lock) center / contain no-repeat;
+}
+
+.french-path-enrol .french-path-gate-body {
+	margin: 0;
+	color: var(--french-path-muted);
+	font-size: .8125rem;
+	line-height: 1.55;
+}
+
+.french-path-enrol .french-path-pathway-link { margin-top: -6px; }
+.french-path-enrol .french-path-pathway-link a { color: var(--french-path-blue); }
+
+.french-path-actions { display: flex; flex-direction: column; gap: 10px; }
+
+.french-path-btn {
+	display: block;
+	width: 100%;
+	padding: 14px 18px;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	font: inherit;
+	font-weight: 700;
+	font-size: .9375rem;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color .15s, border-color .15s;
+}
+
+.french-path-btn-primary { background: var(--french-path-red); color: #fff; }
+.french-path-btn-primary:hover { background: var(--french-path-red-dark); color: #fff; }
+
+.french-path-btn-go { background: var(--french-path-blue); color: #fff; }
+.french-path-btn-go:hover { background: var(--french-path-blue-dark); color: #fff; }
+
+.french-path-btn-ghost {
+	background: transparent;
+	border-color: #cfc6b8;
+	color: var(--french-path-card-ink);
+}
+
+.french-path-btn-ghost:hover { border-color: var(--french-path-card-ink); color: var(--french-path-card-ink); }
+
+.french-path-btn-off,
+.french-path-btn[aria-disabled="true"] {
+	background: #e6ded2;
+	color: #97907f;
+	cursor: not-allowed;
+}
+
+.french-path-btn:focus-visible { outline: 3px solid var(--french-path-blue); outline-offset: 2px; }
+
+.french-path-enrol .french-path-note { font-size: .8125rem; }
+
+/**
+ * Buying options dialog.
+ */
+
+.french-path-dialog {
+	width: min(560px, calc(100vw - 32px));
+	padding: 0;
+	border: none;
+	border-radius: 6px;
+	background: #FFF8EF;
+	color: #14223A;
+}
+
+.french-path-dialog::backdrop { background: rgba(7, 26, 52, .72); }
+
+.french-path-dialog-head { padding: 24px 26px 16px; border-bottom: 1px solid #e7ddcd; }
+.french-path-dialog-title { margin: 0 0 6px; font-size: 1.3125rem; }
+.french-path-dialog-lede { margin: 0; color: var(--french-path-muted); font-size: .875rem; }
+
+.french-path-options {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 20px 26px 24px;
+	max-height: 56vh;
+	overflow-y: auto;
+}
+
+.french-path-option {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 4px 18px;
+	align-items: center;
+	padding: 16px 18px;
+	border: 1px solid #e2d7c5;
+	border-radius: 4px;
+	background: #fffdfa;
+}
+
+.french-path-option.is-guaranteed {
+	border-color: #2F67B8;
+	box-shadow: inset 3px 0 0 #2F67B8;
+}
+
+.french-path-option-name { font-size: 1rem; font-weight: 700; }
+.french-path-option-meta { grid-column: 1; color: var(--french-path-muted); font-size: .8125rem; }
+
+.french-path-option-price {
+	grid-row: 1 / span 2;
+	grid-column: 2;
+	text-align: right;
+	font-size: 1.1875rem;
+	font-weight: 800;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+.french-path-option-badge {
+	display: inline-block;
+	margin-left: 8px;
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: #2F67B8;
+	color: #fff;
+	font-size: .625rem;
+	font-weight: 600;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	vertical-align: middle;
+}
+
+.french-path-option-buy {
+	grid-column: 2;
+	grid-row: 3;
+	padding: 8px 16px;
+	border-radius: 3px;
+	background: #D52643;
+	color: #fff;
+	font-size: .8125rem;
+	font-weight: 700;
+	text-align: center;
+	text-decoration: none;
+}
+
+.french-path-option-buy:hover { background: #b81f38; color: #fff; }
+
+.french-path-dialog-foot {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	padding: 14px 26px 20px;
+	border-top: 1px solid #e7ddcd;
+	color: var(--french-path-muted);
+	font-size: .8125rem;
+}
+
+.french-path-dialog-close {
+	padding: 8px 14px;
+	border: 1px solid #cfc6b8;
+	border-radius: 3px;
+	background: transparent;
+	font: inherit;
+	font-weight: 600;
+	color: #14223A;
+	cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.french-path-btn { transition: none; }
+}

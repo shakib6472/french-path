@@ -1,0 +1,255 @@
+/**
+ * Package edit screen.
+ */
+
+:root {
+	--french-path-border: #dcdcde;
+	--french-path-muted: #646970;
+	--french-path-warn: #b32d2e;
+	--french-path-surface: #f6f7f7;
+}
+
+.french-path-box .french-path-help {
+	display: block;
+	margin-top: 4px;
+	color: var(--french-path-muted);
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.french-path-box .french-path-warn {
+	color: var(--french-path-warn);
+}
+
+.french-path-list {
+	margin: 12px 0;
+	padding: 0 0 0 28px;
+}
+
+.french-path-list:empty {
+	margin: 0;
+}
+
+.french-path-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin: 0 0 6px;
+	padding: 8px 12px;
+	border: 1px solid var(--french-path-border);
+	border-radius: 4px;
+	background: var(--french-path-surface);
+}
+
+.french-path-item-title {
+	font-weight: 600;
+}
+
+.french-path-item-actions {
+	display: flex;
+	gap: 10px;
+	flex-shrink: 0;
+}
+
+.french-path-item-actions .button-link {
+	color: var(--french-path-muted);
+	font-size: 16px;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.french-path-item-actions .button-link:hover,
+.french-path-item-actions .button-link:focus {
+	color: #135e96;
+}
+
+.french-path-item-actions .french-path-remove:hover,
+.french-path-item-actions .french-path-remove:focus {
+	color: var(--french-path-warn);
+}
+
+.french-path-empty {
+	margin: 12px 0;
+	color: var(--french-path-muted);
+	font-style: italic;
+}
+
+.french-path-add {
+	margin-top: 12px;
+	padding-top: 12px;
+	border-top: 1px solid var(--french-path-border);
+}
+
+.french-path-add select {
+	min-width: 320px;
+	max-width: 100%;
+	margin-right: 6px;
+}
+
+/**
+ * Learner and release screen.
+ */
+
+.french-path-screen .french-path-search {
+	margin: 12px 0 16px;
+}
+
+.french-path-screen .french-path-search input[type="search"] {
+	min-width: 260px;
+}
+
+.french-path-package {
+	margin: 0 0 28px;
+	padding: 0 0 4px;
+}
+
+.french-path-package-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 0 0 8px;
+	font-size: 16px;
+}
+
+.french-path-badge {
+	padding: 2px 8px;
+	border-radius: 10px;
+	background: #135e96;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: .02em;
+	text-transform: uppercase;
+}
+
+.french-path-col-step {
+	width: 40px;
+}
+
+.french-path-col-action {
+	width: 110px;
+}
+
+.french-path-open {
+	color: #007017;
+	font-weight: 600;
+}
+
+.french-path-locked {
+	color: var(--french-path-muted);
+	font-weight: 600;
+}
+
+.french-path-screen td .french-path-help {
+	display: inline;
+	margin-left: 6px;
+}
+
+.french-path-release-next {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.french-path-release-next .french-path-help {
+	display: inline;
+	margin: 0;
+}
+
+/**
+ * Package readiness.
+ */
+
+.french-path-ready {
+	color: #007017;
+	font-weight: 600;
+}
+
+.column-french_path_status .french-path-help {
+	display: block;
+	margin-top: 2px;
+}
+
+.french-path-issues {
+	margin: 0 0 8px 20px;
+	list-style: disc;
+}
+
+.french-path-issues li {
+	margin: 0 0 4px;
+}
+
+/**
+ * Settings screen.
+ */
+
+.french-path-fee-state {
+	margin-top: 10px;
+	padding: 10px 14px;
+	border-left: 3px solid #135e96;
+	background: #f6f7f7;
+	max-width: 46em;
+}
+
+.french-path-fee-state strong { margin-right: 4px; }
+
+/**
+ * Where a package is offered.
+ */
+
+.french-path-choice {
+	margin: 0 0 10px;
+}
+
+.french-path-choice .french-path-help {
+	margin-left: 24px;
+}
+
+.french-path-pages {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 2px 18px;
+	margin-top: 12px;
+	padding-top: 12px;
+	border-top: 1px solid var(--french-path-border);
+}
+
+.french-path-page {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+	padding: 5px 8px;
+	border-radius: 4px;
+}
+
+.french-path-page:hover {
+	background: var(--french-path-surface);
+}
+
+.french-path-page.is-inside .french-path-page-title {
+	font-weight: 600;
+}
+
+.french-path-page-title {
+	min-width: 0;
+}
+
+.french-path-page-tag {
+	flex-shrink: 0;
+	padding: 1px 7px;
+	border-radius: 999px;
+	background: #135e96;
+	color: #fff;
+	font-size: 10px;
+	font-weight: 600;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+}
+
+.french-path-page-tag.is-quiet {
+	background: transparent;
+	color: var(--french-path-muted);
+	border: 1px solid var(--french-path-border);
+}

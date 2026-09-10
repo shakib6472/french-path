@@ -1,0 +1,46 @@
+# What never reaches the distribution zip.
+#
+# build.sh reads this file to build the zip, so the exclusions live in exactly
+# one place.
+#
+# Rules:
+#   a line ending in /   a directory, excluded with everything under it
+#   anything else        a file name or a glob, matched against the path
+#                        relative to the plugin root and against the basename
+#   # or blank           ignored
+
+# The suite. It is how the plugin is built, not how it runs.
+tests/
+
+# The two working documents.
+CLAUDE.md
+PLUGIN-SPEC.md
+
+# The build itself.
+build.sh
+build/
+.distignore
+
+# Anything beginning with a dot, at any depth. Covers .git, .gitignore,
+# .github, .DS_Store, .idea, .vscode and everything like them.
+.*
+
+# Dependency and tooling directories, in case any ever appear.
+node_modules/
+vendor/
+
+# Editor and operating system leftovers.
+*.bak
+*.orig
+*.rej
+*.swp
+*.tmp
+*~
+Thumbs.db
+
+# Build output and archives.
+*.zip
+*.tar
+*.tar.gz
+*.log
+*.sql
